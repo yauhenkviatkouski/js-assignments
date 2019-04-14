@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+   return new Date(value);
 }
 
 /**
@@ -37,7 +37,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+  return new Date(value);
 }
 
 
@@ -56,11 +56,13 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+   date.setMonth(1, 29);
+   if (date.getMonth() == 1) return true;
+   return false;
 }
 
 
-/**
+/**throw new Error('Not implemented');
  * Returns the string represention of the timespan between two dates.
  * The format of output string is "HH:mm:ss.sss"
  *
@@ -76,14 +78,25 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+    let ms = endDate - startDate;
+    let hh = Math.floor(ms / 3600000);
+    hh = (hh < 10) ? "0" + hh : hh;
+    ms = ms % 3600000;
+    let mm = Math.floor(ms / 60000);
+    mm = (mm < 10) ? "0" + mm : mm;
+    ms = ms % 60000;
+    let ss = Math.floor(ms / 1000);
+    ss = (ss < 10) ? "0" + ss : ss;
+    ms = ms % 1000;
+    ms = (ms < 10) ? "00" + ms : ((ms < 100) ? "0" + ms : ms);
+    return `${hh}:${mm}:${ss}.${ms}`
 }
 
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
- * 
+ *
  * @param {date} date
  * @return {number}
  *
