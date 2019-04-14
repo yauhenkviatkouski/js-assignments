@@ -343,7 +343,11 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   throw new Error('Not implemented');
+  var counter = 0;
+    arr.map(item => {
+     if (typeof(item) == "number" && item > 0) counter++;
+   })
+   return counter;
 }
 
 /**
@@ -376,7 +380,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-   throw new Error('Not implemented');
+    return arr.reduce(((sum, item)=> sum + item), 0)
 }
 
 /**
@@ -392,7 +396,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   throw new Error('Not implemented');
+  throw new Error('Not implemented');
 }
 
 /**
@@ -429,7 +433,7 @@ function findAllOccurences(arr, item) {
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-   throw new Error('Not implemented');
+   return arr.join(",");
 }
 
 
@@ -579,7 +583,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+  throw new Error('Not implemented');
 }
 
 
