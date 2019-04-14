@@ -222,7 +222,15 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
+  let newArr = arr.map(function(item, i) {
+    if (i !== arr.length - 1) {
+      // item.push("\n");
+      item[item.length - 1] += "\n"
+      return item;
+    }
+    return item;
+  })
+    return newArr.join("");
 }
 
 /**
@@ -237,7 +245,7 @@ function toCsvText(arr) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-   throw new Error('Not implemented');
+   return arr.map(item => Math.pow(item, 2))
 }
 
 
@@ -256,7 +264,14 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-   throw new Error('Not implemented');
+  let current = arr[0];
+    return arr.map((item, i) => {
+      if (i != 0) {
+        current = item + current;
+        return current;
+      }
+      return item;
+    })
 }
 
 /**
@@ -271,7 +286,9 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   throw new Error('Not implemented');
+    return arr.filter((item, i) => {
+      if (i % 2 != 0) return '' + item;
+    } )
 }
 
 
@@ -393,8 +410,12 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   throw new Error('Not implemented');
-}
+  let counter = 0;
+  arr.filter(i => {
+  if (i === item) counter++;
+  });
+  return counter;
+  }
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimeter
